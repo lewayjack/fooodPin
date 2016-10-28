@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <title>Neighborhood-Map</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <meta name="theme-color" content="#9aaebf">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header><h1 class = "header">我的美食藏宝图</h1></header>
+    
+    <main>
+        <div id="map"></div>
+        <div id="sider">
+            <form id = "filter-box">
+                <input type="text" data-bind ='textInput:itemToFilter' id="filter-input"  placeholder="选出最想吃的">
+                <button id ="filter-button" type="submit" data-bind="click : filterItem" >filter</button>
+            </form>
+            <div class="maplist" data-bind = "foreach:markersList">
+                <div class="list-box">
+                    <h3 data-bind = "text:name ,click : $parent.setCurrentList"></h3>
+                    <ul class="tags" data-bind = "foreach:tags">
+                        <li class="tag" data-bind = "text:tag"></li>
+                    </ul>
+
+            </div>
+            <div class="nytimes" data-bind = "foreach:newsList">
+                <div class="nyt-Box" >
+                    <h3 class="nyt-arctitle" data-bind ="text:headline.main">
+                        <a data-bind = "attr: { href: web-url}"></a>
+                    </h3>
+                    <p class="nyt-snippet" data-bind = "text:snippet"> </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="list-btn"></div>
+    </main>
+
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script  src="js/lib/jquery.min.js"></script>
+    <script src="js/app.js"></script>
+    <script defer type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=4390pqUVVxQU4MLSKWukgxNuzHyKGhi8&callback=mapView.init" onerror="mapView.baiduError()"></script>
+</body>
+</html>
